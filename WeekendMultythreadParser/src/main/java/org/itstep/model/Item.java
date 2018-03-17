@@ -18,6 +18,9 @@ public class Item {
 	@Id
 	@Column(name = "article_id")
 	private String articleId;
+		
+	@Column(name = "parent_url", length = 800)
+	private String parentUrl;
 	
 	@Column(name = "item_url", length = 800, nullable=false)
 	private String itemUrl;

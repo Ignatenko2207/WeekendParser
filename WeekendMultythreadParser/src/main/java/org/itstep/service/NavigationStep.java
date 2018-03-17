@@ -1,5 +1,46 @@
 package org.itstep.service;
 
-public class NavigationStep {
+import java.io.IOException;
 
+import org.itstep.model.Keyword;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class NavigationStep extends Thread{
+
+	private final String url;
+	
+	private final Keyword keyword;
+	
+	public NavigationStep(Keyword key, String url) {
+		this.url = url;
+		this.keyword = key;
+	}
+	
+	@Override
+	public void run() {
+		
+		System.out.println("Start parsing with url " + url);
+		Document content = null;
+		
+		try {
+			content = Jsoup.connect(url).get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Element itemListElement = content.getElementById("productListing");
+		Elements itemElements = itemListElement.getElementsByAttributeValue("class", "productListing-data");
+		
+		for (Element aElement : itemElements) {
+			if(aElement.attr("href") != null) {
+				ProductStep nextStep = new ProductStep(this.keyword, this.url, aElement.attr("href"));
+				nextStep.start();
+			}
+		}
+		
+		System.out.println("Finish creating of next product steps from url " + url);
+	}
 }
