@@ -17,4 +17,13 @@ public class Keyword {
 	@Id
 	@Column(name="key")
 	private String key;
+	
+	public Keyword() {
+	}
+
+	public Keyword(String key) {
+		this.key = key;
+	}
+	
+	
 }

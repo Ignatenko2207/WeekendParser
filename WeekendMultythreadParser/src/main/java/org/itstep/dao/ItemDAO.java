@@ -12,7 +12,7 @@ public class ItemDAO {
 
 	private Session session;
 	
-	public void save(Item item) {
+	public synchronized void save(Item item) {
 		
 		session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -25,7 +25,7 @@ public class ItemDAO {
 		session.close();
 	}
 	
-	public List<Item> getAll() {
+	public synchronized List<Item> getAll() {
 		
 		session = HibernateUtil.getSessionFactory().openSession();
 		

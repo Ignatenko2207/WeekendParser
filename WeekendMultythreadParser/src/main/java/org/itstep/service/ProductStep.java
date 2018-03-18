@@ -2,6 +2,7 @@ package org.itstep.service;
 
 import java.io.IOException;
 
+import org.itstep.dao.ItemDAO;
 import org.itstep.model.Item;
 import org.itstep.model.Keyword;
 import org.jsoup.Jsoup;
@@ -45,6 +46,9 @@ public class ProductStep extends Thread{
 		if(h1Element.attr("itemprop").equals("name")) {
 			item.setName(h1Element.text());
 		}
+		
+		ItemDAO itemDAO = new ItemDAO();
+		itemDAO.save(item);
 		
 		System.out.println("Finish product parsing from url " + url);
 		

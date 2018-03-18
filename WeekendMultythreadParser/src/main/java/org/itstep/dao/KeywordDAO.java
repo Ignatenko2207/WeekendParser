@@ -12,7 +12,7 @@ public class KeywordDAO {
 
 	private Session session;
 	
-	public void save(Keyword key) {
+	public synchronized void save(Keyword key) {
 		
 		session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -25,7 +25,7 @@ public class KeywordDAO {
 		session.close();
 	}
 	
-	public List<Keyword> getAll() {
+	public synchronized List<Keyword> getAll() {
 		
 		session = HibernateUtil.getSessionFactory().openSession();
 		
