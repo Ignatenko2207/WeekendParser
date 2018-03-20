@@ -33,7 +33,7 @@ public class KeywordDAO {
 		
 		String sql = "SELECT * FROM keywords";
 		
-		Query query = session.createNativeQuery(sql);
+		Query query = session.createNativeQuery(sql, Keyword.class);
 		
 		List<Keyword> result = query.getResultList();
 				

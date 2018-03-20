@@ -13,25 +13,27 @@ import org.itstep.service.StartupStep;
  */
 public class AppRunner {
 	public static void main(String[] args) {
-		List<Keyword> keys = new ArrayList<Keyword>();
-
-		keys.add(new Keyword("cat toys"));
-
-		keys.add(new Keyword("dog toys"));
-
-		keys.add(new Keyword("cat food"));
-
+//		List<Keyword> keys = new ArrayList<Keyword>();
+//
+//		keys.add(new Keyword("cat toys"));
+//
+//		keys.add(new Keyword("dog toys"));
+//
+//		keys.add(new Keyword("cat food"));
+//
 		KeywordDAO keyDAO = new KeywordDAO();
-
-		for (Keyword keyword : keys) {
-
-			keyDAO.save(keyword);
-
-		}
+//
+//		for (Keyword keyword : keys) {
+//
+//			keyDAO.save(keyword);
+//
+//		}
 
 		List<Keyword> keysFromDB = keyDAO.getAll();
 
 		StartupStep startupStep = new StartupStep(keysFromDB);
+		
+		startupStep.runParsing();
 
 	}
 }

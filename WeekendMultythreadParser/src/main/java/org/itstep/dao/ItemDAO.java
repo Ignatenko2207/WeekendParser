@@ -33,7 +33,7 @@ public class ItemDAO {
 		
 		String sql = "SELECT * FROM items";
 		
-		Query query = session.createNativeQuery(sql);
+		Query query = session.createNativeQuery(sql, Item.class);
 		
 		List<Item> result = query.getResultList();
 				
